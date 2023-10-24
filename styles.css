@@ -1,0 +1,76 @@
+/*Óscar Arroyo Aguadero*/
+/* Estilos para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para encabezados */
+h1, h2, h3 {
+    color: #333;
+}
+
+/* Estilos para formularios */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para etiquetas de formulario */
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Estilos para campos de formulario */
+input[type="text"] {
+    width: 75%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilos para botones */
+input[type="submit"] {
+    background-color: #0074d9;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para tablas */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+/* Estilos para enlaces */
+a {
+    color: #0074d9;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
