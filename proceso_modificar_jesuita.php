@@ -10,9 +10,10 @@
 <form method="post" action="proceso_modificar_jesuita.php">
     <?php
     require('JesuitaCRUD.php');
+    require('config.php');
 
     if (isset($_POST['idJesuita'])) {
-        $crud = new JesuitaCRUD("localhost", "root", "", "jesuita1");
+        $crud = new JesuitaCRUD(hostBBDD,usuarioBBDD,contraBBDD,nombreBBDD);
 
         $idJesuita = $_POST['idJesuita'];
         $visita = $crud->consultarJesuita($idJesuita);

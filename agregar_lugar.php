@@ -24,6 +24,8 @@
 </form>
     <?php
     require ("LugarCRUD.php");
+    require('config.php');
+
     if (isset($_POST['ip']) && isset($_POST['lugar']) && isset($_POST['descripcion'])) {
         try {
             // Datos del formulario
@@ -32,7 +34,7 @@
             $descripcion = $_POST["descripcion"];
 
             // Instanciamos la clase JesuitaCRUD
-            $crud = new LugarCRUD("localhost", "root", "", "jesuita1");
+            $crud = new LugarCRUD(hostBBDD,usuarioBBDD,contraBBDD,nombreBBDD);
 
             // Intentamos agregar el lugar
             $mensaje = $crud->agregarLugar($ip, $lugar, $descripcion);

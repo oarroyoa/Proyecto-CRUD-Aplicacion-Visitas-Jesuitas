@@ -13,9 +13,11 @@
     <input type="submit" value="Eliminar Jesuita seleccionado">
         <?php
         require ('JesuitaCRUD.php');
+        require('config.php');
+
         if (isset($_POST['idJesuita'])) {
 
-            $crud = new JesuitaCRUD("localhost", "root", "", "jesuita1");
+            $crud = new JesuitaCRUD(hostBBDD,usuarioBBDD,contraBBDD,nombreBBDD);
 
             $idJesuita = $_POST['idJesuita'];
 

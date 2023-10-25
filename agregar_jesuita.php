@@ -24,6 +24,7 @@
 </form>
     <?php
     require ("JesuitaCRUD.php");
+    require('config.php');
 
     if (isset($_POST['idJesuita']) && isset($_POST['nombre']) && isset($_POST['firma'])) {
         try {
@@ -33,7 +34,7 @@
             $firma = $_POST["firma"];
 
             // Instanciamos la clase JesuitaCRUD
-            $crud = new JesuitaCRUD("localhost", "root", "", "jesuita1");
+            $crud = new JesuitaCRUD(hostBBDD,usuarioBBDD,contraBBDD,nombreBBDD);
 
             // Intentamos agregar el Jesuita
             $mensaje = $crud->agregarJesuita($idJesuita, $nombre, $firma);

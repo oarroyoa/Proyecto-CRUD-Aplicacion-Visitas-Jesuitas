@@ -15,7 +15,9 @@
         </tr>
         <?php
         require_once ('JesuitaCRUD.php');
-        $crud = new JesuitaCRUD("localhost", "root", "", "jesuita1");
+        require('config.php');
+
+        $crud = new JesuitaCRUD(hostBBDD,usuarioBBDD,contraBBDD,nombreBBDD);
         $jesuitas = $crud->obtenerJesuitas();
         foreach ($jesuitas as $jesuita) {
             echo "<tr>";

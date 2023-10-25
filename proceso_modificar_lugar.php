@@ -9,8 +9,9 @@
 <h1>Modificar Lugar</h1>
 <form method="post" action="proceso_modificar_lugar.php">
     <?php
+    require('config.php');
     require('LugarCRUD.php');
-    $crud = new LugarCRUD("localhost", "root", "", "jesuita1");
+    $crud = new LugarCRUD(hostBBDD,usuarioBBDD,contraBBDD,nombreBBDD);
 
     if (isset($_POST['ip'])) {
         $ip = $_POST['ip'];

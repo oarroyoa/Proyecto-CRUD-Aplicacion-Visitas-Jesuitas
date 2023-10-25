@@ -13,9 +13,11 @@
     <input type="submit" value="Eliminar lugar seleccionado">
     <?php
     require ('LugarCRUD.php');
+    require('config.php');
+
     if (isset($_POST['ip'])) {
 
-        $crud = new LugarCRUD("localhost", "root", "", "jesuita1");
+        $crud = new LugarCRUD(hostBBDD,usuarioBBDD,contraBBDD,nombreBBDD);
 
         $ip = $_POST['ip'];
 

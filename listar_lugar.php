@@ -15,7 +15,8 @@
         </tr>
         <?php
         require_once ('LugarCRUD.php');
-        $crud = new LugarCRUD("localhost", "root", "", "jesuita1");
+        require('config.php');
+        $crud = new LugarCRUD(hostBBDD,usuarioBBDD,contraBBDD,nombreBBDD);
         $lugares = $crud->obtenerLugares();
         foreach ($lugares as $lugar) {
             echo "<tr>";
