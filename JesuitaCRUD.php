@@ -67,5 +67,12 @@ class JesuitaCRUD
 
         return $jesuitas;
     }
+
+    public function consultarJesuita($idJesuita) {
+        $query = "SELECT * FROM jesuita where idJesuita = '$idJesuita'";
+        $result = mysqli_query($this->conn, $query);
+
+        return mysqli_fetch_assoc($result); // Devuelve la fila como un array asociativo
+    }
 }
 
