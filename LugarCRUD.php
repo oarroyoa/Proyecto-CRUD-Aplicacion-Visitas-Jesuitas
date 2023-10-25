@@ -34,8 +34,7 @@ class LugarCRUD
 
     public function modificarLugar($ip, $lugar, $descripcion)
     {
-        $query = "UPDATE jesuita SET lugar = '$lugar', descripcion = '$descripcion' WHERE ip = $ip";
-
+        $query = "UPDATE lugar SET lugar = '$lugar', descripcion = '$descripcion' WHERE ip = '$ip'";
         if (mysqli_query($this->conn, $query)) {
             return "Lugar modificado correctamente.";
         } else {

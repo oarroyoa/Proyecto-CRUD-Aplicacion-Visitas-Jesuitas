@@ -7,52 +7,24 @@
 </head>
 <body>
 <h1>Modificar Jesuita</h1>
-<form method="post" action="modificar_jesuita.php">
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Firma</th>
-            <th>Seleccionar</th>
-        </tr>
-        <?php
-        require_once ('JesuitaCRUD.php');
-        $crud = new JesuitaCRUD("localhost", "root", "", "jesuita1");
-        $jesuitas = $crud->obtenerJesuitas();
-        foreach ($jesuitas as $jesuita) {
-            echo "<tr>";
-            echo "<td>" . $jesuita['idJesuita'] . "</td>";
-            echo "<td>" . $jesuita['nombre'] . "</td>";
-            echo "<td>" . $jesuita['firma'] . "</td>";
-            echo "<td><input type='radio' name='idJesuita' value='" . $jesuita['idJesuita'] . "'></td>";
-            echo "</tr>";
-        }
-        ?>
-    </table>
-    Nuevo Nombre: <input type="text" name="nombre"><br>
-    Nueva Firma: <input type="text" name="firma"><br>
-    <input type="submit" value="Modificar Jesuita">
+<form method="post" action="proceso_modificar_jesuita.php">
+    <label for="idJesuita">ID Jesuita:</label>
+    <input type="text" name="idJesuita" required><br>
+    <input type="submit" value="Modificar Jesuita seleccionado">
     <?php
-    require_once ('JesuitaCRUD.php');
-    if (isset($_POST['idJesuita']) && isset($_POST['nombre']) && isset($_POST['firma'])) {
+    require ('JesuitaCRUD.php');
+    if (isset($_POST['idJesuita'])) {
 
+        $crud = new JesuitaCRUD("localhost", "root", "", "jesuita1");
         $idJesuita = $_POST['idJesuita'];
-        $nombre = $_POST['nombre'];
-        $firma = $_POST['firma'];
-
-        // Verificar si los campos nombre y firma están vacíos
-        if (empty($nombre) || empty($firma)) {
-            echo "<p>Nombre y Firma son campos obligatorios.</p>";
-        } else {
-            $crud = new JesuitaCRUD("localhost", "root", "", "jesuita1");
-            $mensaje = $crud->modificarJesuita($idJesuita, $nombre, $firma);
-            echo "<p>" . $mensaje . "</p>";
-        }
+        $visita= $crud->consultarJesuita($idJesuita);
     }
     ?>
 </form>
+
 <br>
 <a href="agregar_jesuita.php">Agregar Jesuita</a><br>
+<a href="listar_jesuita.php">Listar Jesuita</a><br>
 <a href="eliminar_jesuita.php">Eliminar Jesuita</a>
 </body>
 </html>

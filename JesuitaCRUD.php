@@ -34,7 +34,7 @@ class JesuitaCRUD
 
     public function modificarJesuita($idJesuita, $nombre, $firma)
     {
-        $query = "UPDATE jesuita SET nombre = '$nombre', firma = '$firma' WHERE idJesuita = $idJesuita";
+        $query = "UPDATE jesuita SET nombre = '$nombre', firma = '$firma' WHERE idJesuita = '$idJesuita'";
 
         if (mysqli_query($this->conn, $query)) {
             return "Jesuita modificado correctamente.";
@@ -46,7 +46,7 @@ class JesuitaCRUD
 
     public function eliminarJesuita($idJesuita)
     {
-        $query = "DELETE FROM jesuita WHERE idJesuita = $idJesuita";
+        $query = "DELETE FROM jesuita WHERE idJesuita = '$idJesuita'";
 
         if (mysqli_query($this->conn, $query)) {
             return "Jesuita eliminado correctamente.";

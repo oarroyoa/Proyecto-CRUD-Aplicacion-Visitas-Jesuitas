@@ -26,7 +26,8 @@
     ?>
 </form>
 <br>
-<a href="agregar_lugar.php">Agregar lugar</a><br>
-<a href="modificar_lugar.php">Modificar lugar</a>
+<a href="agregar_lugar.php">Agregar Lugar</a><br>
+<a href="listar_lugar.php">Listar Lugar</a><br>
+<a href="modificar_lugar.php">Modificar Lugar</a>
 </body>
 </html>

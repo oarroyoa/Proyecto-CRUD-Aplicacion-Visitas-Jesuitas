@@ -3,56 +3,29 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Modificar Jesuita</title>
+    <title>Modificar Lugar</title>
 </head>
 <body>
-<h1>Modificar Jesuita</h1>
-<form method="post" action="modificar_jesuita.php">
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Firma</th>
-            <th>Seleccionar</th>
-        </tr>
-        <?php
-        require_once ('JesuitaCRUD.php');
-        $crud = new JesuitaCRUD("localhost", "root", "", "jesuita1");
-        $jesuitas = $crud->obtenerJesuitas();
-        foreach ($jesuitas as $jesuita) {
-            echo "<tr>";
-            echo "<td>" . $jesuita['idJesuita'] . "</td>";
-            echo "<td>" . $jesuita['nombre'] . "</td>";
-            echo "<td>" . $jesuita['firma'] . "</td>";
-            echo "<td><input type='radio' name='idJesuita' value='" . $jesuita['idJesuita'] . "'></td>";
-            echo "</tr>";
-        }
-        ?>
-    </table>
-    Nuevo Nombre: <input type="text" name="nombre"><br>
-    Nueva Firma: <input type="text" name="firma"><br>
-    <input type="submit" value="Modificar Jesuita">
+<h1>Modificar Lugar</h1>
+<form method="post" action="proceso_modificar_lugar.php">
+    <label for="ip">IP:</label>
+    <input type="text" name="ip" required><br>
+    <input type="submit" value="Modificar lugar seleccionado">
     <?php
-    require_once ('JesuitaCRUD.php');
-    if (isset($_POST['idJesuita']) && isset($_POST['nombre']) && isset($_POST['firma'])) {
+    require ('LugarCRUD.php');
+    if (isset($_POST['ip'])) {
 
-        $idJesuita = $_POST['idJesuita'];
-        $nombre = $_POST['nombre'];
-        $firma = $_POST['firma'];
+        $crud = new LugarCRUD("localhost", "root", "", "jesuita1");
 
-        // Verificar si los campos nombre y firma están vacíos
-        if (empty($nombre) || empty($firma)) {
-            echo "<p>Nombre y Firma son campos obligatorios.</p>";
-        } else {
-            $crud = new JesuitaCRUD("localhost", "root", "", "jesuita1");
-            $mensaje = $crud->modificarJesuita($idJesuita, $nombre, $firma);
-            echo "<p>" . $mensaje . "</p>";
-        }
+        $ip = $_POST['ip'];
+        $visita= $crud->consultarLugar($ip);
     }
     ?>
 </form>
+
 <br>
-<a href="agregar_jesuita.php">Agregar Jesuita</a><br>
-<a href="eliminar_jesuita.php">Eliminar Jesuita</a>
+<a href="agregar_lugar.php">Agregar Lugar</a><br>
+<a href="listar_lugar.php">Listar Lugar</a><br>
+<a href="eliminar_lugar.php">Eliminar Lugar</a>
 </body>
 </html>

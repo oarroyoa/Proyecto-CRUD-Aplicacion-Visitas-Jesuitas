@@ -48,6 +48,7 @@
     ?>
 <br>
 <a href="eliminar_lugar.php">Eliminar Lugar</a><br>
+<a href="listar_lugar.php">Listar Lugar</a><br>
 <a href="modificar_lugar.php">Modificar Lugar</a>
 
 </body>

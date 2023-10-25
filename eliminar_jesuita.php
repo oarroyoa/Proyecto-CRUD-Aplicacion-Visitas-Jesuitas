@@ -27,6 +27,7 @@
 </form>
 <br>
 <a href="agregar_jesuita.php">Agregar Jesuita</a><br>
+<a href="listar_jesuita.php">Listar Jesuita</a><br>
 <a href="modificar_jesuita.php">Modificar Jesuita</a>
 </body>
 </html>

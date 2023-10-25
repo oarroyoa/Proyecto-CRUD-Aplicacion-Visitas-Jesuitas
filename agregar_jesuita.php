@@ -49,6 +49,7 @@
     ?>
 <br>
 <a href="eliminar_jesuita.php">Eliminar Jesuita</a><br>
+<a href="listar_jesuita.php">Listar Jesuita</a><br>
 <a href="modificar_jesuita.php">Modificar Jesuita</a>
 
 </body>
