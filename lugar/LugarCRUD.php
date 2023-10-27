@@ -4,9 +4,10 @@ class LugarCRUD
 {
     private $conn;
     public $errno;
-    public function __construct($host, $user, $password, $database)
+    public function __construct()
     {
-        $this->conn = new mysqli($host, $user, $password, $database);
+        require('config/configDB.php');
+        $this->conn = new mysqli(BBDD_HOST, BBDD_USUARIO, BBDD_PASSWORD, BBDD_NOMBRE);
 
         if ($this->conn->connect_error) {
             die("Error de conexión: " . $this->conn->connect_error);
@@ -23,35 +24,38 @@ class LugarCRUD
     public function agregarLugar($ip, $lugar, $descripcion)
     {
         $query = "INSERT INTO lugar (ip, lugar, descripcion) VALUES ('$ip', '$lugar', '$descripcion')";
-
+        $mensaje = "";
         if (mysqli_query($this->conn, $query)) {
-            return "Lugar agregado correctamente.";
+            $mensaje = "Lugar agregado correctamente.";
         } else {
-            return "Error al agregar el lugar: " . mysqli_error($this->conn);
+            $mensaje = "Error al agregar el lugar: " . mysqli_error($this->conn);
         }
+        return $mensaje;
     }
 
 
     public function modificarLugar($ip, $lugar, $descripcion)
     {
         $query = "UPDATE lugar SET lugar = '$lugar', descripcion = '$descripcion' WHERE ip = '$ip'";
+        $mensaje = "";
         if (mysqli_query($this->conn, $query)) {
-            return "Lugar modificado correctamente.";
+            $mensaje = "Lugar modificado correctamente.";
         } else {
-            $this->errno = $this->conn->errno; // Guardar el código de error
-            return "Error al modificar el lugar: " . mysqli_error($this->conn);
+            $mensaje = "Error al modificar el lugar: " . mysqli_error($this->conn);
         }
+        return $mensaje;
     }
 
     public function eliminarLugar($ip)
     {
         $query = "DELETE FROM lugar WHERE ip = '$ip'";
-
+        $mensaje = "";
         if (mysqli_query($this->conn, $query)) {
-            return "Lugar eliminado correctamente.";
+            $mensaje = "Lugar eliminado correctamente.";
         } else {
-            return "Error al eliminar el lugar: " . mysqli_error($this->conn);
+            $mensaje = "Error al eliminar el lugar: " . mysqli_error($this->conn);
         }
+        return $mensaje;
     }
 
     public function obtenerLugares()

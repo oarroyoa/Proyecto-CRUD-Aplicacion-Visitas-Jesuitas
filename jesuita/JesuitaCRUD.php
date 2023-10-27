@@ -4,9 +4,10 @@ class JesuitaCRUD
 {
     private $conn;
     public $errno;
-    public function __construct($host, $user, $password, $database)
+    public function __construct()
     {
-        $this->conn = new mysqli($host, $user, $password, $database);
+        require('config/configDB.php');
+        $this->conn = new mysqli(BBDD_HOST, BBDD_USUARIO, BBDD_PASSWORD, BBDD_NOMBRE);
 
         if ($this->conn->connect_error) {
             die("Error de conexión: " . $this->conn->connect_error);
@@ -22,37 +23,39 @@ class JesuitaCRUD
 
     public function agregarJesuita($idJesuita, $nombre, $firma)
     {
-        $query = "INSERT INTO jesuita (idJesuita, nombre, firma) VALUES ($idJesuita, '$nombre', '$firma')";
-
+        $query = "INSERT INTO jesuita (idJesuita, nombre, firma) VALUES ('$idJesuita', '$nombre', '$firma')";
+        $mensaje = "";
         if (mysqli_query($this->conn, $query)) {
-            return "Jesuita agregado correctamente.";
+            $mensaje = "Jesuita agregado correctamente.";
         } else {
-            return "Error al agregar el Jesuita: " . mysqli_error($this->conn);
+            $mensaje = "Error al agregar el jesuita: " . mysqli_error($this->conn);
         }
+        return $mensaje;
     }
 
 
     public function modificarJesuita($idJesuita, $nombre, $firma)
     {
         $query = "UPDATE jesuita SET nombre = '$nombre', firma = '$firma' WHERE idJesuita = '$idJesuita'";
-
+        $mensaje = "";
         if (mysqli_query($this->conn, $query)) {
-            return "Jesuita modificado correctamente.";
+            $mensaje = "Jesuita modificado correctamente.";
         } else {
-            $this->errno = $this->conn->errno; // Guardar el código de error
-            return "Error al modificar el Jesuita: " . mysqli_error($this->conn);
+            $mensaje = "Error al modificar el jesuita: " . mysqli_error($this->conn);
         }
+        return $mensaje;
     }
 
     public function eliminarJesuita($idJesuita)
     {
         $query = "DELETE FROM jesuita WHERE idJesuita = '$idJesuita'";
-
+        $mensaje = "";
         if (mysqli_query($this->conn, $query)) {
-            return "Jesuita eliminado correctamente.";
+            $mensaje = "Jesuita eliminado correctamente.";
         } else {
-            return "Error al eliminar el Jesuita: " . mysqli_error($this->conn);
+            $mensaje = "Error al eliminar el jesuita: " . mysqli_error($this->conn);
         }
+        return $mensaje;
     }
 
     public function obtenerJesuitas()

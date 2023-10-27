@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <!-- Óscar Arroyo Aguadero -->
-<html>
+<html lang="es">
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../style/styles.css">
     <title>Modificar Lugar</title>
 </head>
 <body>
 <h1>Modificar Lugar</h1>
 <form method="post" action="proceso_modificar_lugar.php">
     <?php
-    require('config.php');
     require('LugarCRUD.php');
-    $crud = new LugarCRUD(hostBBDD,usuarioBBDD,contraBBDD,nombreBBDD);
+    $crud = new LugarCRUD();
 
     if (isset($_POST['ip'])) {
         $ip = $_POST['ip'];
@@ -26,7 +25,7 @@
             echo "<input type='text' name='descripcion' value='" . $visita['descripcion'] . "'>";
 
             // Obtener valores de $_POST si están definidos
-            $ip = $_POST['ip'] ?? '';
+            $ip = $_POST['ip'];
             $lugar = $_POST['lugar'] ?? '';
             $descripcion = $_POST['descripcion'] ?? '';
 
@@ -38,6 +37,7 @@
             }
         } else {
             echo "<p>No existe un lugar con la IP proporcionada.</p>";
+            echo "<a href='../index.html'>Volver al Inicio</a></br>";
         }
     }
     ?>

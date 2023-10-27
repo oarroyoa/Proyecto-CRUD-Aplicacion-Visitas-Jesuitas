@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <!--Óscar Arroyo Aguadero -->
-<html>
+<html lang="es">
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../style/styles.css">
     <title>Eliminar Lugar</title>
 </head>
 <body>
 <h1>Eliminar Lugar</h1>
 <form method="post" action="eliminar_lugar.php">
     <label for="ip">IP:</label>
-    <input type="text" name="ip" required><br>
+    <input type="text" id="ip" name="ip" required><br>
     <input type="submit" value="Eliminar lugar seleccionado">
     <?php
     require ('LugarCRUD.php');
-    require('config.php');
-
     if (isset($_POST['ip'])) {
 
-        $crud = new LugarCRUD(hostBBDD,usuarioBBDD,contraBBDD,nombreBBDD);
+        $crud = new LugarCRUD();
 
         $ip = $_POST['ip'];
-
-        $mensaje = $crud->eliminarLugar($ip);
-
-        echo "<p>" . $mensaje . "</p>";
+        $visita = $crud->consultarLugar($ip);
+        if(!empty($visita)){
+            $mensaje = $crud->eliminarLugar($ip);
+            echo "<p>" . $mensaje . "</p>";
+        }else{
+            echo "</br>No se ha encontrado el lugar a eliminar";
+        }
     }
     ?>
 </form>

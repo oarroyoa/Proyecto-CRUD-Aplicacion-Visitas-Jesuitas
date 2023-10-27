@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!--Óscar Arroyo Aguadero -->
-<html>
+<html lang="es">
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../style/styles.css">
     <title>Listar Lugares</title>
 </head>
 <body>
@@ -15,8 +15,7 @@
         </tr>
         <?php
         require_once ('LugarCRUD.php');
-        require('config.php');
-        $crud = new LugarCRUD(hostBBDD,usuarioBBDD,contraBBDD,nombreBBDD);
+        $crud = new LugarCRUD();
         $lugares = $crud->obtenerLugares();
         foreach ($lugares as $lugar) {
             echo "<tr>";

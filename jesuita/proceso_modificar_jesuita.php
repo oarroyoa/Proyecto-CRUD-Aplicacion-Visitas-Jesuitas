@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!-- Óscar Arroyo Aguadero -->
-<html>
+<html lang="es">
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../style/styles.css">
     <title>Modificar Jesuita</title>
 </head>
 <body>
@@ -10,17 +10,14 @@
 <form method="post" action="proceso_modificar_jesuita.php">
     <?php
     require('JesuitaCRUD.php');
-    require('config.php');
-
     if (isset($_POST['idJesuita'])) {
-        $crud = new JesuitaCRUD(hostBBDD,usuarioBBDD,contraBBDD,nombreBBDD);
-
+        $crud = new JesuitaCRUD();
         $idJesuita = $_POST['idJesuita'];
         $visita = $crud->consultarJesuita($idJesuita);
         // Verificar si el Jesuita existe antes de consultarlo
         if (!empty($visita)) {
 
-            echo "<label for='idJesuita'>ID Jesuita:</label>";
+            echo "<label for='idJesuita'>Número de puesto:</label>";
             echo "<input type='text' name='idJesuita' value='" . $visita['idJesuita'] . "'>";
             echo "<label for='nombre'>Nombre:</label>";
             echo "<input type='text' name='nombre' value='" . $visita['nombre'] . "'>";
@@ -39,7 +36,7 @@
             }
         } else {
             echo "<p>No existe un Jesuita con el ID proporcionado.</p>";
-            echo "<a href='index.html'>Volver al Inicio</a></br>";
+            echo "<a href='../index.html'>Volver al Inicio</a></br>";
         }
     }
     ?>

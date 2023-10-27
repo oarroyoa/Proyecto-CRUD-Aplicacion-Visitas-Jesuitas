@@ -5,7 +5,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../style/styles.css">
     <title>Agregar Lugar</title>
 </head>
 <body>
@@ -24,8 +24,6 @@
 </form>
     <?php
     require ("LugarCRUD.php");
-    require('config.php');
-
     if (isset($_POST['ip']) && isset($_POST['lugar']) && isset($_POST['descripcion'])) {
         try {
             // Datos del formulario
@@ -34,7 +32,7 @@
             $descripcion = $_POST["descripcion"];
 
             // Instanciamos la clase JesuitaCRUD
-            $crud = new LugarCRUD(hostBBDD,usuarioBBDD,contraBBDD,nombreBBDD);
+            $crud = new LugarCRUD();
 
             // Intentamos agregar el lugar
             $mensaje = $crud->agregarLugar($ip, $lugar, $descripcion);
@@ -42,7 +40,7 @@
             echo "<p>$mensaje</p>";
         }   catch (mysqli_sql_exception $e) {
             if ($e->getCode() == 1062) {
-                $mensaje = "Clave única duplicada";
+                $mensaje = "Esta IP ya ha sido introducida previamente.";
                 echo "<p>".$mensaje."</p>";
             }
         }
