@@ -6,7 +6,7 @@ class JesuitaCRUD
     public $errno;
     public function __construct()
     {
-        require('config/configDB.php');
+        require('../config/configDB.php');
         $this->conn = new mysqli(BBDD_HOST, BBDD_USUARIO, BBDD_PASSWORD, BBDD_NOMBRE);
 
         if ($this->conn->connect_error) {
