@@ -1,30 +1,19 @@
-
-
-<!DOCTYPE html>
-<!--Óscar Arroyo Aguadero -->
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../style/styles.css">
-    <title>Agregar Jesuita</title>
-</head>
-<body>
-<h1>Agregar Jesuita</h1>
-<form method="post" action="agregar_jesuita.php">
-    <label for="idJesuita">Número de puesto:</label>
-    <input type="text" id="idJesuita" name="idJesuita" required><br>
-
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required><br>
-
-    <label for="firma">Firma:</label>
-    <input type="text" id="firma" name="firma" required><br>
-
-    <input type="submit" value="Agregar Jesuita">
-</form>
-    <?php
+<?php
+    include("interfaz.php");
+    imprimirCabecera("Agregar Jesuita");
     require("JesuitaCRUD.php");
+    echo "<form method='post' action='agregar_jesuita.php'>
+    <label for='idJesuita'>Número de puesto:</label>
+    <input type='text' id='idJesuita' name='idJesuita' required><br>
 
+    <label for='nombre'>Nombre:</label>
+    <input type='text' id='nombre' name='nombre' required><br>
+
+    <label for='firma'>Firma:</label>
+    <input type='text' id='firma' name='firma' required><br>
+
+    <input type='submit' value='Agregar Jesuita'>
+    </form>";
     if (isset($_POST['idJesuita']) && isset($_POST['nombre']) && isset($_POST['firma'])) {
         try {
             // Datos del formulario
@@ -46,11 +35,5 @@
             }
         }
     }
+    imprimirPie("Agregar Jesuita");
     ?>
-<br>
-<a href="eliminar_jesuita.php">Eliminar Jesuita</a><br>
-<a href="listar_jesuita.php">Listar Jesuita</a><br>
-<a href="modificar_jesuita.php">Modificar Jesuita</a>
-
-</body>
-</html>

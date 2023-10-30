@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<!-- Óscar Arroyo Aguadero -->
-<html lang="es">
-<head>
-    <link rel="stylesheet" type="text/css" href="../style/styles.css">
-    <title>Modificar Jesuita</title>
-</head>
-<body>
-<h1>Modificar Jesuita</h1>
-<form method="post" action="proceso_modificar_jesuita.php">
-    <?php
+<?php
+    include('interfaz.php');
+    imprimirCabecera("Modificar Jesuita");
     require('JesuitaCRUD.php');
+    echo "<form method='post' action='proceso_modificar_jesuita.php'>";
     if (isset($_POST['idJesuita'])) {
         $crud = new JesuitaCRUD();
         $idJesuita = $_POST['idJesuita'];
@@ -18,7 +11,7 @@
         if (!empty($visita)) {
 
             echo "<label for='idJesuita'>Número de puesto:</label>";
-            echo "<input type='text' name='idJesuita' value='" . $visita['idJesuita'] . "'>";
+            echo "<input type='text' name='idJesuita' value='" . $visita['idJesuita'] . "' readonly>";
             echo "<label for='nombre'>Nombre:</label>";
             echo "<input type='text' name='nombre' value='" . $visita['nombre'] . "'>";
             echo "<label for='firma'>Firma:</label>";
@@ -38,13 +31,8 @@
             echo "<p>No existe un Jesuita con el ID proporcionado.</p>";
             echo "<a href='../index.html'>Volver al Inicio</a></br>";
         }
+        echo "<input type='submit' value='Modificar Jesuita seleccionado'>";
+        echo "</form>";
     }
+    imprimirPie("Modificar Jesuita");
     ?>
-    <input type="submit" value="Modificar Jesuita seleccionado">
-</form>
-<br>
-<a href="agregar_jesuita.php">Agregar Jesuita</a><br>
-<a href="listar_jesuita.php">Listar Jesuita</a><br>
-<a href="eliminar_jesuita.php">Eliminar Jesuita</a>
-</body>
-</html>

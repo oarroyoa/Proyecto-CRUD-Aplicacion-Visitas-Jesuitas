@@ -1,34 +1,22 @@
-<!DOCTYPE html>
-<!--Óscar Arroyo Aguadero -->
-<html lang="es">
-<head>
-    <link rel="stylesheet" type="text/css" href="../style/styles.css">
-    <title>Listar Lugares</title>
-</head>
-<body>
-<h1>Listar Lugares</h1>
-    <table>
-        <tr>
-            <th>IP</th>
-            <th>Lugar</th>
-            <th>Descripción</th>
-        </tr>
-        <?php
-        require_once ('LugarCRUD.php');
-        $crud = new LugarCRUD();
-        $lugares = $crud->obtenerLugares();
-        foreach ($lugares as $lugar) {
-            echo "<tr>";
-            echo "<td>" . $lugar['ip'] . "</td>";
-            echo "<td>" . $lugar['lugar'] . "</td>";
-            echo "<td>" . $lugar['descripcion'] . "</td>";
-            echo "</tr>";
-        }
-        ?>
-    </table>
-<br>
-<a href="agregar_lugar.php">Agregar Lugar</a><br>
-<a href="modificar_lugar.php">Modificar Lugar</a><br>
-<a href="eliminar_lugar.php">Eliminar Lugar</a>
-</body>
-</html>
+<?php
+include('interfaz.php');
+imprimirCabecera("Listar Lugar");
+require_once('LugarCRUD.php');
+echo "<table>
+       <tr>
+           <th>IP</th>
+           <th>Lugar</th>
+           <th>Firma</th>
+       </tr>";
+$crud = new LugarCRUD();
+$lugares = $crud->obtenerLugares();
+foreach ($lugares as $lugar) {
+    echo "<tr>";
+    echo "<td>" . $lugar['ip'] . "</td>";
+    echo "<td>" . $lugar['lugar'] . "</td>";
+    echo "<td>" . $lugar['descripcion'] . "</td>";
+    echo "</tr>";
+}
+echo "</table>";
+imprimirPie("Listar Lugar");
+?>
