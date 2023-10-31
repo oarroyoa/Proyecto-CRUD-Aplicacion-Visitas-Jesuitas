@@ -10,6 +10,7 @@ body {
 /* Estilos para encabezados */
 h1 {
     color: #333;
+    text-align: center;
 }
 
 /* Estilos para formularios */
