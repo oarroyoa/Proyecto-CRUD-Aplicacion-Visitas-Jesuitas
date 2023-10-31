@@ -1,5 +1,4 @@
 <?php
-echo "No tiene que funcionar";
 $ip=$_GET['ip'];
 $proceso = $_GET['proceso'];
 if ($_GET['proceso'] == 'borrar'){
